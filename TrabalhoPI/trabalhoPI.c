@@ -82,7 +82,8 @@ void menuJogos(){
     
     switch(escolha){
         case 1:
-            //Adivinha o número 
+            //Adivinha o número
+            printf("\nAdivinha o numero");
             break;
         case 2:
             //Adivinha a carta

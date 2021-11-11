@@ -19,6 +19,15 @@ char naipeToString(int naipe){
     else return 'n';
 }
 
+//error messages
+void errorMessageGeneral(){
+    printf("\nOpção inserida incorreta!\n");
+}
+
+void errorMessageGame(){
+    printf("\nErrou!\n");
+}
+
 //JOGO UM
 void adivinhaONumero(){
     /*variaveis 

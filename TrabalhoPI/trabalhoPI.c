@@ -23,7 +23,7 @@ void vinteEUm();
 
 //structures
 struct player{
-    char* name;
+    char name;
     int points;
 };
 
@@ -31,16 +31,6 @@ void main(){
     //função do menu principal
     menuIGA();
 }
-
-//error messages
-void errorMessageGeneral(){
-    printf("\nOpção inserida incorreta!\n");
-}
-
-void errorMessageGame(){
-    printf("\nErrou!\n");
-}
-
 
 //menu principal
 void menuIGA(){

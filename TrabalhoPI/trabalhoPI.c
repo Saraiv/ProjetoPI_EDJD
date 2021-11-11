@@ -2,9 +2,11 @@
 #include<stdlib.h>
 #include<time.h>
 #include<string.h>
+#include"jogos.h"
 
 //error messages
 void errorMessageGeneral();
+void errorMessageGame();
 //main funcs
 void menuIGA();
 void menuJogos();
@@ -15,8 +17,9 @@ void introduzirJogadores();
 
 //jogos
 void adivinhaONumero();
-void Adivinha_a_Carta();
+void adivinhaACarta();
 void vinteEUm();
+//funcao de ajuda para vinteUm()
 
 //structures
 struct player{
@@ -32,6 +35,10 @@ void main(){
 //error messages
 void errorMessageGeneral(){
     printf("\nOpção inserida incorreta!\n");
+}
+
+void errorMessageGame(){
+    printf("\nErrou!\n");
 }
 
 
@@ -142,148 +149,4 @@ void pontosPJogadorGlobal(){
 //função para introduzir jogadores
 void introduzirJogadores(){
 
-}
-
-int generateRandomInt(int min, int max) {
-    srand((unsigned)time(NULL));
-    return min + rand() % (max - min);
-}
-
-
-//jogos
-void adivinhaONumero(){
-    int numAAdivinhar = 0, num = 0, flag = 0, tentativas = 0, tentativasFalhadas = 0, pontuacao = 0;
-
-    num = generateRandomInt(0, 100);
-
-    while(flag == 0){
-        system("cls");
-        
-        // printf("\n%d\n", num);
-
-        printf("\nEscreva um número: ");
-        scanf("%d", &numAAdivinhar);
-
-        tentativas++;
-
-        if(num == numAAdivinhar){
-            printf("\nAcertou!\n");
-            printf("\nTentativas: %d\n", tentativas);
-            
-            //sistema de pontos
-            if(tentativas <= 0) pontuacao = 0; 
-            else if(tentativas == 1) pontuacao = 10; 
-            else if(tentativas >= 10) pontuacao = 0;
-            else pontuacao = 10 - tentativasFalhadas;
-
-            printf("\nPontos: %d\n", pontuacao);
-            printf("\n\n");
-            system("PAUSE");
-            flag = -1;
-        } else if(numAAdivinhar < num){
-            printf("\nNúmero maior\n");
-            printf("\n\n");
-            tentativasFalhadas++;
-            system("PAUSE");
-        } else if(numAAdivinhar > num){
-            printf("\nNúmero menor\n");
-            tentativasFalhadas++;
-            printf("\n\n");
-            system("PAUSE");
-        } else{
-            printf("\nErrou!\n");
-            printf("\n\n");
-            system("PAUSE");
-        } 
-    }
-}
-
-void adivinhaACarta()
-{
-    system("cls");
-    // N- Naipe aleatorio || carta- carta aleatoria || Tc- Tentativa de acertar a carta || naipes- tentativa de acertar os naipes 
-    // nt- numero de tentativas|| P- Pontos
-    int N = 0, carta = 0, Tc = 0, flag1 = 0, flag2 = 0, nt = 0, P = 0;
-    char naipes[10], NC[10] = "0";
-    
-    //criar carta aleatoria
-    carta = generateRandomInt(1, 13);
-    
-    //Criar a comparação de strings n=1(Copas) n=2(Espadas) n=3(Paus) n=4(Ouros)
-    
-    N = generateRandomInt(1, 4);
-    
-    if (N == 1)
-       memcpy(NC, "copas", 10);
-    if(N == 2)
-        memcpy(NC, "espadas", 10);
-    if(N == 3)
-        memcpy(NC, "paus", 10);
-    if (N == 4)
-        memcpy(NC, "ouros", 10);
-
-    //----------------------------------------------
-   
-    while (flag1 == 0 || flag2 == 0)
-    {
-
-        if (flag1 == 0) {
-            
-            //Input do utilizador
-            printf("\tOuros Copas Espadas Paus\n\t    Escolha um naipe:\n");
-            scanf("%s", &naipes);
-            
-            //Converter todos os caracteres para minuscula assim o programa nao e sensivel a maiusculas e minusculas
-            for (int i = 0; naipes[i] != '\0'; i++) {
-                if (naipes[i] >= 'A' && naipes[i] <= 'Z') {
-                    naipes[i] = naipes[i] + 32;
-                }
-            }
-
-            //Sistema de comparação do input NAIPES
-
-            if (strcmp(naipes, NC) == 0) {
-                printf("\nAcertou o naipe!!\n");
-                flag1 = 1;
-            }
-            if (strcmp(naipes, NC) != 0)
-                printf("\nFalhou o naipe!!\n");
-        }
-
-        if (flag2 == 0) {
-            printf("\tCada carta tem um valor correspondente ao seu simbolo\n\t\tAs-1 Valete-11 Dama-12 Rei-13\n\t\t\tEscolha a carta:\n");
-            scanf("%d", &Tc);
-            //Sistema de comparação do input Cartas
-            if (Tc < carta)
-                printf("%c O valor da carta e superior %c\n", 30, 30);
-            if (Tc > carta)
-                printf("%c O valor da carta e inferior %c\n", 31, 31);
-            if (Tc == carta)
-            {
-                printf("Acertou o valor da carta!\n");
-                flag2 = 1;
-            }
-        }
-        
-        //Contar o numero de tentativas
-        nt++;
-    }
-
-    //Atribuição dos pontos
-    P = 6 - nt;
-    if (P < 0)
-        P = 0;
-
-    while (flag1 == 1)
-    {
-        system("cls");
-        printf("\nA sua pontuacao foi: %d\nPrecisou de %d tentativas.\n", P, nt);
-        printf("Se pretende sair prima (0)\n");
-        scanf("%d", &flag1);
-        
-    }
-}
-
-void vinteEUm(){
-    
 }

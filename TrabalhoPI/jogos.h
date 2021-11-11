@@ -90,8 +90,8 @@ void adivinhaACarta()
 {
     system("cls");
     // N- Naipe aleatorio || carta- carta aleatoria || Tc- Tentativa de acertar a carta || naipes- tentativa de acertar os naipes 
-    // nt- numero de tentativas|| P- Pontos
-    int N = 0, carta = 0, Tc = 0, flag1 = 0, flag2 = 0, nt = 0, P = 0;
+    // nt- numero de tentativas|| P- Pontos || np- numero de pontos
+    int N = 0, carta = 0, Tc = 0, flag1 = 0, flag2 = 0, nt = 0,np = 0, P = 0;
     char naipes[10], NC[10] = "0";
     
     //criar carta aleatoria
@@ -111,7 +111,8 @@ void adivinhaACarta()
         memcpy(NC, "ouros", 10);
 
     //----------------------------------------------
-   
+    printf("\n%s", NC);
+    printf("\n%d", carta);
     while (flag1 == 0 || flag2 == 0)
     {
 
@@ -131,11 +132,11 @@ void adivinhaACarta()
             //Sistema de comparação do input NAIPES
 
             if (strcmp(naipes, NC) == 0) {
-                printf("\nAcertou o naipe!!\n");
+                printf("\nAcertou o naipe!!\n\n");
                 flag1 = 1;
             }
             if (strcmp(naipes, NC) != 0)
-                printf("\nFalhou o naipe!!\n");
+                printf("\nFalhou o naipe!!\n\n");
         }
 
         if (flag2 == 0) {
@@ -143,29 +144,31 @@ void adivinhaACarta()
             scanf("%d", &Tc);
             //Sistema de comparação do input Cartas
             if (Tc < carta)
-                printf("%c O valor da carta e superior %c\n", 30, 30);
+                printf("%c O valor da carta e superior %c\n\n", 30, 30);
             if (Tc > carta)
-                printf("%c O valor da carta e inferior %c\n", 31, 31);
+                printf("%c O valor da carta e inferior %c\n\n", 31, 31);
             if (Tc == carta)
             {
-                printf("Acertou o valor da carta!\n");
+                printf("Acertou o valor da carta!\n\n");
                 flag2 = 1;
             }
         }
         
         //Contar o numero de tentativas
+        if(flag1 == 0 || flag2 == 0)
+            np++;
         nt++;
     }
 
     //Atribuição dos pontos
-    P = 6 - nt;
+    P = 6 - np;
     if (P < 0)
         P = 0;
 
     while (flag1 == 1)
     {
         system("cls");
-        printf("\nA sua pontuacao foi: %d\nPrecisou de %d tentativas.\n", P, nt);
+        printf("\nA sua pontuacao foi: %d\nPrecisou de %d tentativa(s).\n", P, nt);
         printf("Se pretende sair prima (0)\n");
         scanf("%d", &flag1);
         

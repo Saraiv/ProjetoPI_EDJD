@@ -7,6 +7,7 @@
 //error messages
 void errorMessageGeneral();
 void errorMessageGame();
+
 //main funcs
 void menuIGA();
 void menuJogos();
@@ -19,7 +20,7 @@ void introduzirJogadores();
 void adivinhaONumero();
 void adivinhaACarta();
 void vinteEUm();
-//funcao de ajuda para vinteUm()
+void jogoDoGalo();
 
 //structures
 struct player{
@@ -99,6 +100,7 @@ void menuJogos(){
             break;
         case 4:
             //Jogo do Galo (1 vs 1)
+            jogoDoGalo();
             break;
         case 5:
             //Jogo do Galo (1 vs CPU)

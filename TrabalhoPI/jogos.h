@@ -279,14 +279,18 @@ void jogoDoGalo()
           7 | 8 | 9
             |   |
     */
-    int flags = 0, flag = 0, flagB = 0, temp = 0, J = 1, v1 = 0, v2 = 0, P1 = 0, P2 = 0, jogador1 = 0, jogador2 = 0;
+    int flags = 0, flag = 0, flagB = 0, temp = 0, J = 1, v1 = 0, v2 = 0, P1 = 0, P2 = 0, jogador1 = 0, jogador2 = 0, c = 0, JP1 = 0, JP2 = 0;
     char tabuleiro[] = {'1','2','3','4','5','6','7','8','9'};
     
     //Ver o jogador que joga primeiro
     jogador1 = generateRandomInt(0, 2);
     if (jogador1 == 0)//jogador1 joga em segundo
+    {
+        JP2 = 1;
         jogador2 = 1;
-
+    }
+    else
+        JP1 = 1;
 
     while (flags == 0)
     {
@@ -536,21 +540,80 @@ void jogoDoGalo()
                     flag = 1;
                 }//Jogador 2 ganha vitoria diagonal
             }
-            
+            c++;
+            if(v1 == 0 && v2 == 0 && c == 9)
+            {
+                flag = 1;
+
+            }
         }
 
         if (v1 == 1)
         {
+            system("cls");
+            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[0], tabuleiro[1], tabuleiro[2]);
+            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[3], tabuleiro[4], tabuleiro[5]);
+            printf("   |   |   \n %c | %c | %c \n   |   |   \n", tabuleiro[6], tabuleiro[7], tabuleiro[8]);
+            printf("\n");
             printf("Vitoria do jogador(1)!\n");
-            P1++;
-           
+
+            //Sistema de pontos
+            if (JP1 == 1)
+            { 
+                P1++;
+                if(P2 - 1 < 0)
+                    P2 = 0;
+                else
+                    P2--;
+            }
+            else
+            {
+                P1 += 2;           
+                if(P2 - 2 < 0)
+                    P2 = 0;
+                else
+                    P2 -= 2;
+            }
         }
-        else 
+        else if(v2 == 1)
         {
+            system("cls");
+            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[0], tabuleiro[1], tabuleiro[2]);
+            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[3], tabuleiro[4], tabuleiro[5]);
+            printf("   |   |   \n %c | %c | %c \n   |   |   \n", tabuleiro[6], tabuleiro[7], tabuleiro[8]);
+            printf("\n");
             printf("Vitoria do jogador(2)!\n");
-            P2++;
+
+            //Sistema de pontos!
+            if (JP2 == 1)
+            { 
+                P2++;
+                if(P1 - 1 < 0)
+                    P1 = 0;
+                else
+                    P1--;
+            }
+            else
+            {
+                P2 += 2;           
+                if(P1 - 2 < 0)
+                    P1 = 0;
+                else
+                    P1 -= 2;
+            }
         }
-        
+        else
+        {
+            system("cls");
+            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[0], tabuleiro[1], tabuleiro[2]);
+            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[3], tabuleiro[4], tabuleiro[5]);
+            printf("   |   |   \n %c | %c | %c \n   |   |   \n", tabuleiro[6], tabuleiro[7], tabuleiro[8]);
+            printf("\n");
+            printf("Empate!!\n");
+        }
+
+        //Output que mostra a scoreboard entre os dois jogadores
+        printf("Pontos do jogador(1):\n%d\n\nPontos do jogador(2):\n%d\n", P1, P2);
         printf("Pretende continuar?\nSim(0) Nao(1)\n");
         scanf("%d", &flags);
         
@@ -562,11 +625,21 @@ void jogoDoGalo()
             flag = 0;
             v1 = 0;
             v2 = 0;
-            
+            c = 0;
 
             jogador1 = generateRandomInt(0, 2);
             if (jogador1 == 0)//jogador1 joga em segundo
+            {
+                JP1 = 0;
+                JP2 = 1;
                 jogador2 = 1;
+            }
+            else
+            {
+                jogador2 = 0;
+                JP2 = 0;
+                JP1 = 1;
+            }
         }
     }
- }
+}

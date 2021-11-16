@@ -3,9 +3,7 @@
 #include<stdlib.h>
 #include<time.h>
 #include<string.h>
-#include"./Helpers/menu.h"
+#include"../Jogos/jogoDoGaloUmVsCPU.c"
 
-void main(){
-    //função do menu principal
-    menuIGA();
-}
+//JOGO CINCO
+void jogoDoGaloVsCPU();

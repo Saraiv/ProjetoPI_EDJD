@@ -1,41 +1,10 @@
-//Normal includes
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#include<string.h>
-
-//helpers e jogos
-#include"Helpers/helpers.h"
-#include"Jogos/adivinhaACarta.h"
-#include"Jogos/adivinhaONumero.h"
-#include"Jogos/vinteEUm.h"
-#include"Jogos/jogoDoGaloUmVsUm.h"
-#include"Jogos/jogoDoGaloUmVsCPU.h"
-#include"Jogos/quatroEmLinha.h"
-
-//helpers functions
-char naipeToString(int naipe);
-int generateRandomInt(int min, int max);
-void errorMessageGeneral();
-void errorMessageGame();
-
-//main funcs
-void menuIGA();
+//menu principal
 void menuJogos();
 void pontosGlobais();
 void pontosPJogo();
 void pontosPJogadorGlobal();
 void introduzirJogadores();
 
-//jogos
-void adivinhaONumero();
-void adivinhaACarta();
-void vinteEUm();
-void jogoDoGalo();
-void jogoDoGaloVsCPU();
-void quatroEmLinha();
-
-//menu principal
 void menuIGA(){
     //variaveis
     int escolha = -1, flag = 0;

@@ -1,15 +1,3 @@
-//Normal includes
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#include<string.h>
-
-//helpers functions
-char naipeToString(int naipe);
-int generateRandomInt(int min, int max);
-void errorMessageGeneral();
-void errorMessageGame();
-
 //JOGO CINCO
 void jogoDoGaloVsCPU()
  {

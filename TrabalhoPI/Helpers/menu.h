@@ -6,12 +6,12 @@
 
 //helpers e jogos
 #include"./helpers.h"
-#include"adivinhaACarta.h"
-#include"adivinhaONumero.h"
-#include"vinteEUm.h"
-#include"jogoDoGalo.h"
-#include"jogoDoGaloUmVsCPU.h"
-#include"quatroEmLinha.h"
+#include"../Jogos/adivinhaACarta.c"
+#include"../Jogos/adivinhaONumero.c"
+#include"../Jogos/vinteEUm.c"
+#include"../Jogos/jogoDoGalo.c"
+#include"../Jogos/jogoDoGaloUmVsCPU.c"
+#include"../Jogos/quatroEmLinha.c"
 #include"../Jogos/menu.c"
 
 //menu principal

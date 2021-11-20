@@ -75,6 +75,7 @@ void menuJogos(){
             break;
         case 5:
             //Jogo do Galo (1 vs CPU)
+            jogoDoGaloVsCPU();
             break;
         case 6:
             //Jogo da Forca
@@ -85,6 +86,7 @@ void menuJogos(){
             break;
         case 8:
             //Quatro-em-Linha (1 vs CPU)
+            quatroEmLinhaVsCPU();
             break;
         case 0:
             flag = -1;

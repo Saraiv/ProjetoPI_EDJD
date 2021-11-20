@@ -12,6 +12,7 @@
 #include"../Jogos/jogoDoGalo.c"
 #include"../Jogos/jogoDoGaloUmVsCPU.c"
 #include"../Jogos/quatroEmLinha.c"
+#include"../Jogos/quatroEmLinhaVsCPU.c"
 #include"../Jogos/menu.c"
 
 //menu principal

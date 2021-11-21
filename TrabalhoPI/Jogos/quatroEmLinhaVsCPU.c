@@ -75,7 +75,6 @@ void quatroEmLinhaVsCPU(){
                     tabuleiro[i][j + 3] == 'X' &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = 'X';
-                        pontosJogadorX++;
                         break;
                     } else if(tabuleiro[i][j] == 'X' && 
                     tabuleiro[i + 1][j] == 'X' && 
@@ -83,15 +82,13 @@ void quatroEmLinhaVsCPU(){
                     tabuleiro[i + 3][j] == 'X' &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = 'X';
-                        pontosJogadorX++;
                         break;
                     } else if(tabuleiro[i][j] == 'X' &&
-                    tabuleiro[i + 1][j + 1] == 'X' && 
-                    tabuleiro[i + 2][j + 2] == 'X' && 
-                    tabuleiro[i + 3][j + 3] == 'X' &&
+                    tabuleiro[i - 1][j + 1] == 'X' && 
+                    tabuleiro[i - 2][j + 2] == 'X' && 
+                    tabuleiro[i - 3][j + 3] == 'X' &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = 'X';
-                        pontosJogadorX++;
                         break;
                     } else if(tabuleiro[i - 3][j - 3] == 'X' &&
                     tabuleiro[i - 2][j - 2] == 'X' && 
@@ -99,7 +96,6 @@ void quatroEmLinhaVsCPU(){
                     tabuleiro[i][j] == 'X' &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = 'X';
-                        pontosJogadorX++;
                         break;
                     } else continue;
                 }
@@ -151,7 +147,6 @@ void quatroEmLinhaVsCPU(){
                     tabuleiro[i][j + 3] == '0' &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = '0';
-                        pontosCPU++;
                         break;
                     } else if(tabuleiro[i][j] == '0' && 
                     tabuleiro[i + 1][j] == '0' && 
@@ -159,15 +154,13 @@ void quatroEmLinhaVsCPU(){
                     tabuleiro[i + 3][j] == '0' &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = '0';
-                        pontosCPU++;
                         break;
                     } else if(tabuleiro[i][j] == '0' &&
-                    tabuleiro[i + 1][j + 1] == '0' && 
-                    tabuleiro[i + 2][j + 2] == '0' && 
-                    tabuleiro[i + 3][j + 3] == '0' &&
+                    tabuleiro[i - 1][j + 1] == '0' && 
+                    tabuleiro[i - 2][j + 2] == '0' && 
+                    tabuleiro[i - 3][j + 3] == '0' &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = '0';
-                        pontosCPU++;
                         break;
                     } else if(tabuleiro[i - 3][j - 3] == '0' &&
                     tabuleiro[i - 2][j - 2] == '0' && 
@@ -175,7 +168,6 @@ void quatroEmLinhaVsCPU(){
                     tabuleiro[i][j] == '0' &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = '0';
-                        pontosCPU++;
                         break;
                     } else continue;
                 }
@@ -200,6 +192,10 @@ void quatroEmLinhaVsCPU(){
             printf("\n");
         }
     }
+
+    
+    if(jogadorVencedor == 'X') pontosJogadorX++;
+    else if(jogadorVencedor == '0') pontosCPU++;
 
     system("cls");
     desenharParteDeCima();

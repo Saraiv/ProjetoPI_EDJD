@@ -61,43 +61,36 @@ void quatroEmLinha(){
                 } else if(tabuleiro[linhaTabela][colunaTabela - 1] != ' ') linhaTabela--;
             }
 
+            //Confirmação se há vencedor ou não
             for(int i = 0; i < 6; i++){
-                for(int j = 0; j < 7; j++){
-                    if(tabuleiro[i][j] == jogadorSelecionado && 
-                    tabuleiro[i][j + 1] == jogadorSelecionado && 
-                    tabuleiro[i][j + 2] == jogadorSelecionado && 
+                for(int j = 0; j < 4; j++){
+                    if(tabuleiro[i][j] == jogadorSelecionado &&
+                    tabuleiro[i][j + 1] == jogadorSelecionado &&
+                    tabuleiro[i][j + 2] == jogadorSelecionado &&
                     tabuleiro[i][j + 3] == jogadorSelecionado &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = jogadorSelecionado;
-                        if(jogadorVencedor == 'X') pontosJogadorX++;
-                        else if(jogadorVencedor == '0') pontosJogadorY++;
                         break;
                     } else if(tabuleiro[i][j] == jogadorSelecionado && 
-                    tabuleiro[i + 1][j] == jogadorSelecionado && 
-                    tabuleiro[i + 2][j] == jogadorSelecionado && 
+                    tabuleiro[i + 1][j] == jogadorSelecionado &&
+                    tabuleiro[i + 2][j] == jogadorSelecionado &&
                     tabuleiro[i + 3][j] == jogadorSelecionado &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = jogadorSelecionado;
-                        if(jogadorVencedor == 'X') pontosJogadorX++;
-                        else if(jogadorVencedor == '0') pontosJogadorY++;
                         break;
                     } else if(tabuleiro[i][j] == jogadorSelecionado &&
-                    tabuleiro[i + 1][j + 1] == jogadorSelecionado && 
-                    tabuleiro[i + 2][j + 2] == jogadorSelecionado && 
-                    tabuleiro[i + 3][j + 3] == jogadorSelecionado &&
+                    tabuleiro[i - 1][j + 1] == jogadorSelecionado &&
+                    tabuleiro[i - 2][j + 2] == jogadorSelecionado &&
+                    tabuleiro[i - 3][j + 3] == jogadorSelecionado &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = jogadorSelecionado;
-                        if(jogadorVencedor == 'X') pontosJogadorX++;
-                        else if(jogadorVencedor == '0') pontosJogadorY++;
                         break;
-                    } else if(tabuleiro[i - 3][j - 3] == jogadorSelecionado &&
-                    tabuleiro[i - 2][j - 2] == jogadorSelecionado && 
-                    tabuleiro[i - 1][j - 1] == jogadorSelecionado && 
-                    tabuleiro[i][j] == jogadorSelecionado &&
+                    } else if(tabuleiro[i][j] == jogadorSelecionado &&
+                    tabuleiro[i - 3][j - 3] == jogadorSelecionado &&
+                    tabuleiro[i - 2][j - 2] == jogadorSelecionado &&
+                    tabuleiro[i - 1][j - 1] == jogadorSelecionado &&
                     tabuleiro[i][j] != ' '){
                         jogadorVencedor = jogadorSelecionado;
-                        if(jogadorVencedor == 'X') pontosJogadorX++;
-                        else if(jogadorVencedor == '0') pontosJogadorY++;
                         break;
                     } else continue;
                 }
@@ -121,8 +114,13 @@ void quatroEmLinha(){
             printf("\n");
         }
         
+        //trocar de jogador
         jogadorSelecionado = trocarJogador(jogadorSelecionado);
     }
+
+    //Verificação para adicionar pontos ao jogador vencedor
+    if(jogadorVencedor == 'X') pontosJogadorX++;
+    else if(jogadorVencedor == '0') pontosJogadorY++;
 
     system("cls");
     desenharParteDeCima();

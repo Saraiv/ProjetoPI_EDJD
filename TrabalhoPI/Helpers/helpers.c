@@ -22,6 +22,7 @@ char naipeToString(int naipe){
 //Desenhar parte de cima da tabela para quatro em linha
 void desenharParteDeCima(){
     int columnNumber = 1;
+    printf("\nJogo do galo 1v1\n");
     while(columnNumber != 8)
         printf("| %d | \t", columnNumber++);
 }

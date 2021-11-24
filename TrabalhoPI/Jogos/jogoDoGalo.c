@@ -1,21 +1,69 @@
 //JOGO QUATRO
+void tabjogo(char tabuleiro[])
+{
+    system("cls");
+    //Tabuleiro de jogo
+    printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[0], tabuleiro[1], tabuleiro[2]);
+    printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[3], tabuleiro[4], tabuleiro[5]);
+    printf("   |   |   \n %c | %c | %c \n   |   |   \n", tabuleiro[6], tabuleiro[7], tabuleiro[8]);
+
+}
+
+int vganhou(char tabuleiro[])
+{
+    int v = 0, i = -1, j, x = 0, o = 0, flagv = 0;
+    //array vitoria
+    int arrayv[8][3] = {
+        {0, 1, 2}, {3, 4, 5}, {6, 7, 8},  
+        {0,3,6}, {1,4,7}, {2,5,8},  
+        {0, 4, 8}, {6, 4, 2}
+        };
+     
+    while(flagv != 1)
+    {
+        i++;   
+        if(i != 8)
+        {
+            for(j = 0; j < 3; j++)
+            {
+                //Verifica se é X
+                if(tabuleiro[arrayv[i][j]] == 'X')
+                x++;
+                //Verifica se é O
+                if(tabuleiro[arrayv[i][j]] == 'O')
+                    o++;
+                //Confirma a vitória
+                if(x == 3)
+                {
+                    v = 1;
+                    flagv = 1;
+                }
+                else if(o == 3)
+                {
+                    v = 2;
+                    flagv = 1;
+                }
+            }
+        }
+        else
+            flagv = 1;
+        x = 0;
+        o = 0;
+        
+        if(i == 8)
+            flagv = 1;
+    }
+
+    //se v = 1 jogador(1) v = 2 jogador(2) v = 0 Empate
+    return v;
+}
+
 //Jogo_do_Galo--------------------------------
 void jogoDoGalo()
 {
-    /*
-            |   | 
-          1 | 2 | 3
-         ___|___|___
-            |   |
-          4 | 5 | 6
-         ___|___|___
-            |   |
-          7 | 8 | 9
-            |   |
-    */
-    int flags = 0, flag = 0, flagB = 0, temp = 0, J = 1, v1 = 0, v2 = 0, P1 = 0, P2 = 0, jogador1 = 0, jogador2 = 0, c = 0, JP1 = 0, JP2 = 0;
+    int flags = 0, flag = 0, flagB = 0, temp = 0, J = 1, v1 = 0, v2 = 0, P1 = 0, P2 = 0, jogador1 = 0, jogador2 = 0, c = 0, JP1 = 0, JP2 = 0, v;
     char tabuleiro[] = {'1','2','3','4','5','6','7','8','9'};
-    
+   
     //Ver o jogador que joga primeiro
     jogador1 = generateRandomInt(0, 2);
     if (jogador1 == 0)//jogador1 joga em segundo
@@ -30,11 +78,8 @@ void jogoDoGalo()
     {
         while (flag == 0)
         {
-            system("cls");
-            //Tabuleiro de jogo
-            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[0], tabuleiro[1], tabuleiro[2]);
-            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[3], tabuleiro[4], tabuleiro[5]);
-            printf("   |   |   \n %c | %c | %c \n   |   |   \n", tabuleiro[6], tabuleiro[7], tabuleiro[8]);
+            //Escreve o tabuleiro
+            tabjogo(tabuleiro);
 
             //Input
             if (jogador1 == 1)
@@ -42,9 +87,9 @@ void jogoDoGalo()
             if (jogador2 == 1)
                 printf("Jogador(2):\nEscolha uma coordenada para jogar:\n");
             scanf("%d", &temp);
-            
+           
 
-            //Imprimir a jogada no tabuleiro
+            #pragma region Imprimir a jogada no tabuleiro
             switch (temp)
             {
                 case 1:
@@ -155,7 +200,8 @@ void jogoDoGalo()
 
                     break;
             }
-
+            #pragma endregion
+           
             //Decidir se o jogador pode ou nao jogar
             if (flagB == 0)
             {
@@ -173,127 +219,36 @@ void jogoDoGalo()
             else
                 flagB = 0;
 
-            //Confirmaçao de Vitoria JOGADOR(1)    
-            if (tabuleiro[0] == tabuleiro[1] && tabuleiro[1] == tabuleiro[2] && tabuleiro[2] == 'X')
+            //FUNÇAO DE VERIFICAÇAO DE VITORIA
+            v = vganhou(tabuleiro);
+            
+            if(v == 1)
             {
                 v1 = 1;
                 flag = 1;
-            }//Jogador(1) ganha vitoria primeira linha horizontal
-
-            if (tabuleiro[3] == tabuleiro[4] && tabuleiro[4] == tabuleiro[5] && tabuleiro[5] == 'X')
+            }
+            else if(v == 2)
             {
-                v1 = 1;
+                v2 = 1;
                 flag = 1;
-            }//Jogador(1) ganha vitoria Segunda linha horizontal
-
-            if (tabuleiro[6] == tabuleiro[7] && tabuleiro[7] == tabuleiro[8] && tabuleiro[8] == 'X')
-            {
-                v1 = 1;
-                flag = 1;
-            }//Jogador(1) ganha vitoria terceira linha horizontal
-
-            if (tabuleiro[0] == tabuleiro[3] && tabuleiro[3] == tabuleiro[6] && tabuleiro[6] == 'X')
-            {
-                v1 = 1;
-                flag = 1;
-            }//Jogador(1) ganha vitoria primeira linha vertical
-
-            if (tabuleiro[1] == tabuleiro[4] && tabuleiro[4] == tabuleiro[7] && tabuleiro[7] == 'X')
-            {
-                v1 = 1;
-                flag = 1;
-            }//Jogador(1) ganha vitoria segunda linha vertical
-
-            if (tabuleiro[2] == tabuleiro[5] && tabuleiro[5] == tabuleiro[8] && tabuleiro[8] == 'X')
-            {
-                v1 = 1;
-                flag = 1;
-            }//Jogador(1) ganha vitoria terceira linha vertical
-
-            if (tabuleiro[0] == tabuleiro[4] && tabuleiro[4] == tabuleiro[8] && tabuleiro[8] == 'X')
-            {
-                v1 = 1;
-                flag = 1;
-            }//Jogador(1) ganha vitoria diagonal
-
-            if (tabuleiro[2] == tabuleiro[4] && tabuleiro[4] == tabuleiro[6] && tabuleiro[6] == 'X')
-            {
-                v1 = 1;
-                flag = 1;
-            }//Jogador(1) ganha vitoria diagonal
-
-            //------------------------------------------------------------------
-
-            //Confirmaçao de Vitoria JOGADOR(2) 
-            if (v1 == 0) {
-                if (tabuleiro[0] == tabuleiro[1] && tabuleiro[1] == tabuleiro[2] && tabuleiro[2] == 'O')
-                {
-                    v2 = 1;
-                    flag = 1;
-                }//Jogador 2 ganha vitoria primeira linha horizontal
-
-                if (tabuleiro[3] == tabuleiro[4] && tabuleiro[4] == tabuleiro[5] && tabuleiro[5] == 'O')
-                {
-                    v2 = 1;
-                    flag = 1;
-                }//Jogador 2 ganha vitoria Segunda linha horizontal
-
-                if (tabuleiro[6] == tabuleiro[7] && tabuleiro[7] == tabuleiro[8] && tabuleiro[8] == 'O')
-                {
-                    v2 = 1;
-                    flag = 1;
-                }//Jogador 2 ganha vitoria terceira linha horizontal
-
-                if (tabuleiro[0] == tabuleiro[3] && tabuleiro[3] == tabuleiro[6] && tabuleiro[6] == 'O')
-                {
-                    v2 = 1;
-                    flag = 1;
-                }//Jogador 2 ganha vitoria primeira linha vertical
-
-                if (tabuleiro[1] == tabuleiro[4] && tabuleiro[4] == tabuleiro[7] && tabuleiro[7] == 'O')
-                {
-                    v2 = 1;
-                    flag = 1;
-                }//Jogador 2 ganha vitoria segunda linha vertical
-
-                if (tabuleiro[2] == tabuleiro[5] && tabuleiro[5] == tabuleiro[8] && tabuleiro[8] == 'O')
-                {
-                    v2 = 1;
-                    flag = 1;
-                }//Jogador 2 ganha vitoria terceira linha vertical
-
-                if (tabuleiro[0] == tabuleiro[4] && tabuleiro[4] == tabuleiro[8] && tabuleiro[8] == 'O')
-                {
-                    v2 = 1;
-                    flag = 1;
-                }//Jogador 2 ganha vitoria diagonal
-
-                if (tabuleiro[2] == tabuleiro[4] && tabuleiro[4] == tabuleiro[6] && tabuleiro[6] == 'O')
-                {
-                    v2 = 1;
-                    flag = 1;
-                }//Jogador 2 ganha vitoria diagonal
             }
             c++;
             if(v1 == 0 && v2 == 0 && c == 9)
-            {
                 flag = 1;
 
-            }
+           
         }
 
         if (v1 == 1)
         {
             system("cls");
-            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[0], tabuleiro[1], tabuleiro[2]);
-            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[3], tabuleiro[4], tabuleiro[5]);
-            printf("   |   |   \n %c | %c | %c \n   |   |   \n", tabuleiro[6], tabuleiro[7], tabuleiro[8]);
+            tabjogo(tabuleiro);
             printf("\n");
             printf("Vitoria do jogador(1)!\n");
 
             //Sistema de pontos
             if (JP1 == 1)
-            { 
+            {
                 P1++;
                 if(P2 - 1 < 0)
                     P2 = 0;
@@ -302,7 +257,7 @@ void jogoDoGalo()
             }
             else
             {
-                P1 += 2;           
+                P1 += 2;          
                 if(P2 - 2 < 0)
                     P2 = 0;
                 else
@@ -312,15 +267,13 @@ void jogoDoGalo()
         else if(v2 == 1)
         {
             system("cls");
-            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[0], tabuleiro[1], tabuleiro[2]);
-            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[3], tabuleiro[4], tabuleiro[5]);
-            printf("   |   |   \n %c | %c | %c \n   |   |   \n", tabuleiro[6], tabuleiro[7], tabuleiro[8]);
+            tabjogo(tabuleiro);
             printf("\n");
             printf("Vitoria do jogador(2)!\n");
 
             //Sistema de pontos!
             if (JP2 == 1)
-            { 
+            {
                 P2++;
                 if(P1 - 1 < 0)
                     P1 = 0;
@@ -329,7 +282,7 @@ void jogoDoGalo()
             }
             else
             {
-                P2 += 2;           
+                P2 += 2;          
                 if(P1 - 2 < 0)
                     P1 = 0;
                 else
@@ -339,9 +292,7 @@ void jogoDoGalo()
         else
         {
             system("cls");
-            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[0], tabuleiro[1], tabuleiro[2]);
-            printf("   |   |   \n %c | %c | %c \n___|___|___\n", tabuleiro[3], tabuleiro[4], tabuleiro[5]);
-            printf("   |   |   \n %c | %c | %c \n   |   |   \n", tabuleiro[6], tabuleiro[7], tabuleiro[8]);
+            tabjogo(tabuleiro);
             printf("\n");
             printf("Empate!!\n");
         }
@@ -350,7 +301,7 @@ void jogoDoGalo()
         printf("Pontos do jogador(1):\n%d\n\nPontos do jogador(2):\n%d\n", P1, P2);
         printf("Pretende continuar?\nSim(0) Nao(1)\n");
         scanf("%d", &flags);
-        
+       
         //Se for para jogar novamente reiniciar todas as variaveis do jogo!!
         if(flags == 0)
         {

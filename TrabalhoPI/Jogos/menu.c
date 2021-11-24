@@ -1,3 +1,8 @@
+struct Jogador{
+    char nome[10];
+    int pontos;
+};
+
 //menu principal
 void menuJogos();
 void pontosGlobais();
@@ -8,8 +13,8 @@ void introduzirJogadores();
 void menuIGA(){
     //variaveis
     int escolha = -1, flag = 0;
-    
-    
+    struct Jogador Jogadores[10];
+
     do{
         system("cls");
     
@@ -32,7 +37,7 @@ void menuIGA(){
                 pontosPJogadorGlobal();
                 break;
             case 5:
-                introduzirJogadores();
+                introduzirJogadores(Jogadores);
                 break;
             case 0:
                 flag = -1;
@@ -114,5 +119,24 @@ void pontosPJogadorGlobal(){
 
 //função para introduzir jogadores
 void introduzirJogadores(){
+    char Jogador[10];
+    char writeFile;
+    system("cls");
+    printf("\n\nNome do jogador: ");
+    scanf(" %s", &Jogador);
 
+    FILE *fJogadores = NULL;
+
+	fJogadores = fopen("Ficheiros/Jogadores.txt", "a");
+
+	if(fJogadores == NULL){
+		perror("Error");
+	}
+
+	fprintf(fJogadores, "Jogador: %s \tPontos: 0\n", Jogador);
+	
+	fclose(fJogadores);
+
+    printf("\n\nJogador adicionado com sucesso!\n");
+    system("PAUSE");
 }

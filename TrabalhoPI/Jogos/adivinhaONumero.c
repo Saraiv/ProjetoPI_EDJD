@@ -33,24 +33,28 @@ void adivinhaONumero(){
 
             printf("\nPontos: %d\n", pontuacaoPlayer);
             printf("\n\n");
-            system("PAUSE");
+            premirTeclaContinuar();
+            getChar();
             flag = -1;
         } else if(numAAdivinhar < num){
             printf("\nNúmero maior\n");
             printf("\n\n");
             //incrementacao para numero de tentativas falhadas
             tentativasFalhadas++;
-            system("PAUSE");
+            premirTeclaContinuar();
+            getChar();
         } else if(numAAdivinhar > num){
             printf("\nNúmero menor\n");
             //incrementacao para numero de tentativas falhadas
             tentativasFalhadas++;
             printf("\n\n");
-            system("PAUSE");
+            premirTeclaContinuar();
+            getChar();
         } else{
             errorMessageGame();
             printf("\n\n");
-            system("PAUSE");
+            premirTeclaContinuar();
+            getChar();
         } 
     }
 }

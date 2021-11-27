@@ -84,6 +84,5 @@ void adivinhaACarta()
         printf("\nA sua pontuacao foi: %d\nPrecisou de %d tentativa(s).\n", P, nt);
         printf("Se pretende sair prima (0)\n");
         scanf("%d", &flag1);
-        
     }
 }

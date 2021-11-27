@@ -5,7 +5,7 @@
 #include<string.h>
 
 //helpers e jogos
-#include"./helpers.h"
+#include"../Helpers/helpers.h"
 #include"../Jogos/adivinhaACarta.c"
 #include"../Jogos/adivinhaONumero.c"
 #include"../Jogos/vinteEUm.c"
@@ -13,7 +13,8 @@
 #include"../Jogos/jogoDoGaloUmVsCPU.c"
 #include"../Jogos/quatroEmLinha.c"
 #include"../Jogos/quatroEmLinhaVsCPU.c"
-#include"../Jogos/menu.c"
+#include"menu.c"
+#include"Pontos/pontos.c"
 
 //menu principal
 void menuIGA();

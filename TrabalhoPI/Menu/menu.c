@@ -1,23 +1,21 @@
-struct Jogador{
-    char nome[10];
-    int pontos;
-};
-
 //menu principal
 void menuJogos();
 void pontosGlobais();
 void pontosPJogo();
 void pontosPJogadorGlobal();
 void introduzirJogadores();
+void receberTodosJogadoresEOrdenar();
+int countJogadores();
 
 void menuIGA(){
     //variaveis
-    int escolha = -1, flag = 0;
-    struct Jogador Jogadores[10];
+    int escolha = -1, flag = 0, count = countJogadores() - 1;;
+    struct Jogador Jogadores[200];
+    
 
     do{
         system("cls");
-    
+
         //menu principal
         printf("\nIPCA GAMES ARCH\n\n1- Selecionar um jogo \n2- Pontos globais \n3- Pontos dos 10 melhores jogadores p/ jogo \n");
         printf("4- Pontos dos 10 melhores jogadores \n5- Introduzir jogadores \n0- Sair\n");
@@ -29,15 +27,23 @@ void menuIGA(){
                 break;
             case 2:
                 pontosGlobais();
+                premirTeclaContinuar();
+                getChar();
                 break;
             case 3:
                 pontosPJogo();
+                premirTeclaContinuar();
+                getChar();
                 break;
             case 4:
                 pontosPJogadorGlobal();
+                premirTeclaContinuar();
+                getChar();
                 break;
             case 5:
-                introduzirJogadores(Jogadores);
+                introduzirJogadores();
+                premirTeclaContinuar();
+                getChar();
                 break;
             case 0:
                 flag = -1;
@@ -65,33 +71,49 @@ void menuJogos(){
         case 1:
             //Adivinha o número
             adivinhaONumero();
+            premirTeclaContinuar();
+            getChar();
             break;
         case 2:
             //Adivinha a carta
             adivinhaACarta();
+            premirTeclaContinuar();
+            getChar();
             break;
         case 3:
             //Vinte-e-um
             vinteEUm();
+            premirTeclaContinuar();
+            getChar();
             break;
         case 4:
             //Jogo do Galo (1 vs 1)
             jogoDoGalo();
+            premirTeclaContinuar();
+            getChar();
             break;
         case 5:
             //Jogo do Galo (1 vs CPU)
             jogoDoGaloVsCPU();
+            premirTeclaContinuar();
+            getChar();
             break;
         case 6:
             //Jogo da Forca
+            premirTeclaContinuar();
+            getChar();
             break;
         case 7:
             //Quatro-em-Linha (1 vs 1)
             quatroEmLinha();
+            premirTeclaContinuar();
+            getChar();
             break;
         case 8:
             //Quatro-em-Linha (1 vs CPU)
             quatroEmLinhaVsCPU();
+            premirTeclaContinuar();
+            getChar();
             break;
         case 0:
             flag = -1;
@@ -104,39 +126,16 @@ void menuJogos(){
 
 //função para pontos globais
 void pontosGlobais(){
-
+    receberTodosJogadoresEOrdenar();
+    getChar();;
 }
 
 //função para pontos dos 10 melhores jogadores por cada jogo
 void pontosPJogo(){
-
+    getChar();;
 }
 
 //função para pontos dos 10 melhores jogadores
 void pontosPJogadorGlobal(){
-
-}
-
-//função para introduzir jogadores
-void introduzirJogadores(){
-    char Jogador[10];
-    char writeFile;
-    system("cls");
-    printf("\n\nNome do jogador: ");
-    scanf(" %s", &Jogador);
-
-    FILE *fJogadores = NULL;
-
-	fJogadores = fopen("Ficheiros/Jogadores.txt", "a");
-
-	if(fJogadores == NULL){
-		perror("Error");
-	}
-
-	fprintf(fJogadores, "Jogador: %s \tPontos: 0\n", Jogador);
-	
-	fclose(fJogadores);
-
-    printf("\n\nJogador adicionado com sucesso!\n");
-    system("PAUSE");
+    getChar();;
 }

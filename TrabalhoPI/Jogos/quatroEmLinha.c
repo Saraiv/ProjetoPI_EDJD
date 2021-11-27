@@ -30,7 +30,8 @@ void quatroEmLinha(){
             } else{
                 system("cls");
                 errorMessageGeneral();
-                system("PAUSE");
+                premirTeclaContinuar();
+                getChar();
                 printf("\n");
             }
         }
@@ -56,7 +57,8 @@ void quatroEmLinha(){
                 } else if(linhaTabela <= 0){
                     system("cls");
                     errorMessageGeneral();
-                    system("PAUSE");
+                    premirTeclaContinuar();
+                    getChar();
                     break;
                 } else if(tabuleiro[linhaTabela][colunaTabela - 1] != ' ') linhaTabela--;
             }
@@ -98,7 +100,8 @@ void quatroEmLinha(){
         } else{
             system("cls");
             errorMessageGeneral();
-            system("PAUSE");
+            premirTeclaContinuar();
+            getChar();
         }
 
         system("cls");
@@ -138,5 +141,6 @@ void quatroEmLinha(){
     if(rondas != 42){
         printf("\nO jogador vencedor é: %c\tPontuacao do Jogador X: %d\tPontuacao do Jogador Y: %d\n", jogadorVencedor, pontosJogadorX, pontosJogadorY);
     } else printf("\nEmpate!\tPontuacao do Jogador X: %d\tPontuacao do Jogador Y: %d\n", jogadorVencedor, pontosJogadorX, pontosJogadorY);
-    system("PAUSE");
+    premirTeclaContinuar();
+    getChar();
 }

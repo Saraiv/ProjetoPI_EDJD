@@ -1,2 +1,5 @@
-Jogador: Saraiva 	Pontos: 0
-Jogador: Celestino 	Pontos: 0
+Saraiva 4
+Celestino 2
+Lucas 8
+Alguem 1
+OutroAlgo 6

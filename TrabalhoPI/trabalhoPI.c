@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #include<time.h>
 #include<string.h>
-#include"./Helpers/menu.h"
+#include"Menu/menu.h"
 
 void main(){
     //função do menu principal

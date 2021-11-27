@@ -35,7 +35,8 @@ void quatroEmLinhaVsCPU(){
             } else{
                 system("cls");
                 errorMessageGeneral();
-                system("PAUSE");
+                premirTeclaContinuar();
+                getChar();
                 printf("\n");
             }
         }
@@ -62,7 +63,8 @@ void quatroEmLinhaVsCPU(){
                 } else if(linhaTabela <= 0){
                     system("cls");
                     errorMessageGeneral();
-                    system("PAUSE");
+                    premirTeclaContinuar();
+                    getChar();
                     break;
                 } else if(tabuleiro[linhaTabela][colunaTabela - 1] != ' ') linhaTabela--;
             }
@@ -103,7 +105,8 @@ void quatroEmLinhaVsCPU(){
         } else{
             system("cls");
             errorMessageGeneral();
-            system("PAUSE");
+            premirTeclaContinuar();
+            getChar();
         }
 
         //Vez do CPU
@@ -134,7 +137,8 @@ void quatroEmLinhaVsCPU(){
                 } else if(linhaTabelaCPU <= 0){
                     system("cls");
                     errorMessageGeneral();
-                    system("PAUSE");
+                    premirTeclaContinuar();
+                    getChar();
                     break;
                 } else if(tabuleiro[linhaTabelaCPU][colunaTabelaCPU - 1] != ' ') linhaTabelaCPU--;
             }
@@ -175,7 +179,8 @@ void quatroEmLinhaVsCPU(){
         } else{
             system("cls");
             errorMessageGeneral();
-            system("PAUSE");
+            premirTeclaContinuar();
+            getChar();
         }
 
         
@@ -213,5 +218,6 @@ void quatroEmLinhaVsCPU(){
     if(rondas != 42){
         printf("\nO jogador vencedor é: %c\tPontuacao do Jogador X: %d\tPontuacao do CPU: %d\n", jogadorVencedor, pontosJogadorX, pontosCPU);
     } else printf("\nEmpate!\tPontuacao do Jogador X: %d\tPontuacao do CPU: %d\n", jogadorVencedor, pontosJogadorX, pontosCPU);
-    system("PAUSE");
+    premirTeclaContinuar();
+    getChar();
 }

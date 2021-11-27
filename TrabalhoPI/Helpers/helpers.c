@@ -51,13 +51,13 @@ char trocarJogador(char jogador) {
 void getChar(){
     char ch;
     ch = getchar();
-    while(ch == '\n')
+    while(ch != '\n')
         ch = getchar();
 }
 
 //Mensagens de erro
 void errorMessageGeneral(){
-    printf("\nOpção inserida incorreta!\n");
+    printf("\nOpcao inserida incorreta!\n");
 }
 
 void errorMessageGame(){
@@ -69,98 +69,5 @@ void premirTeclaSair(){
 }
 
 void premirTeclaContinuar(){
-    printf("\nPrima qualquer tecla para continuar.\n");
-}
-
-//Função para introduzir jogadores
-void introduzirJogadores(){
-    char Jogador[10];
-    char writeFile;
-    system("cls");
-    printf("\n\nNome do jogador: ");
-    scanf(" %s", Jogador);
-
-    FILE *fJogadores = NULL;
-
-	fJogadores = fopen("Ficheiros/Jogadores.txt", "a");
-
-	if(fJogadores == NULL){
-		perror("Error");
-	}
-
-	fprintf(fJogadores, "%s 0\n", Jogador);
-	
-	fclose(fJogadores);
-
-    printf("\n\nJogador adicionado com sucesso!\n");
-}
-
-//Função para saber quantos jogadores tem o programa
-int countJogadores(){
-    FILE *fJogadores = NULL;
-    int count = 1;
-    char c, letra = '\n';
-
-    fJogadores = fopen("Ficheiros/Jogadores.txt", "r");
-
-    while (fread(&c, sizeof(char), 1, fJogadores)){
-        if (c == letra){
-            count++;
-        }
-    }
-
-    fclose(fJogadores);
-    return count;
-}
-
-struct Jogador{
-    char nome[10];
-    int pontos;
-};
-
-//Função para receber jogadores do ficheiro
-void receberTodosJogadoresEOrdenar(){
-    int count = countJogadores() - 1, auxPontos;
-    char auxNomes[10];
-    struct Jogador Jogadores[200];
-    
-    FILE *fJogadores = NULL;
-
-    fJogadores = fopen("Ficheiros/Jogadores.txt", "rt");
-
-    if (fJogadores == NULL){
-        perror("Error");
-    }
-
-    for(int i = 0; i < count; i++){
-        fscanf(fJogadores, "%s %d", Jogadores[i].nome, &Jogadores[i].pontos);
-    }
-
-    fclose(fJogadores);
-
-    for(int i = 0; i < count; i++){ 
-        for(int j = 0; j < count; j++){
-            if(Jogadores[i].pontos > Jogadores[j].pontos){ 
-                auxPontos = Jogadores[i].pontos;
-                // auxNomes = Jogadores[i].nome;
-                strcpy(auxNomes, Jogadores[i].nome);
-                Jogadores[i].pontos = Jogadores[j].pontos; 
-                // *Jogadores[i].nome = Jogadores[j].nome;
-                strcpy(Jogadores[i].nome, Jogadores[j].nome);
-                Jogadores[j].pontos = auxPontos;
-                // *Jogadores[j].nome = auxNomes;
-                strcpy(Jogadores[j].nome, auxNomes);
-            } 
-        }
-    }
-
-    system("cls");
-
-    printf("\nPONTUACAO GLOBAL DOS JOGADORES\n\n");
-
-    for(int i = 0; i < count; i++){
-        printf("\n%d: %s %d", i + 1, Jogadores[i].nome, Jogadores[i].pontos);
-    }
-
-    printf("\n");
+    printf("\nPrima enter para continuar.\n");
 }

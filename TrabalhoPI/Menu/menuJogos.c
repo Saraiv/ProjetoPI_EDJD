@@ -45,6 +45,7 @@ void menuJogos(){
             break;
         case 6:
             //Jogo da Forca
+            jogoDaForca();
             premirTeclaContinuar();
             getChar();
             break;

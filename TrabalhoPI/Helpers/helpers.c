@@ -55,6 +55,17 @@ void getChar(){
         ch = getchar();
 }
 
+//Função para validar char jogo da forca
+char getValidChar() {
+	char c;
+
+	do {
+		scanf("%c", &c);
+	} while (c == '\n');
+
+	return c;
+}
+
 //Mensagens de erro
 void errorMessageGeneral(){
     printf("\nOpcao inserida incorreta!\n");

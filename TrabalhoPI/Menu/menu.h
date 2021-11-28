@@ -13,6 +13,7 @@
 #include"../Jogos/jogoDoGaloUmVsCPU.c"
 #include"../Jogos/quatroEmLinha.c"
 #include"../Jogos/quatroEmLinhaVsCPU.c"
+#include"../Jogos/jogoDaForca.c"
 #include"Pontos/pontos.c"
 #include"menu.c"
 #include"menuJogos.c"

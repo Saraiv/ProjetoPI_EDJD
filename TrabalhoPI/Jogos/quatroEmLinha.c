@@ -4,6 +4,7 @@ void quatroEmLinha(){
     int rondas = 0, colunaTabela = -1, pontosJogadorX = 0, pontosJogadorY = 0, 
     linhaTabela = 6, flagVezDeJogador = 0, flagLinhas = 0, flagColunas = 0;
     system("cls");
+    printf("\nQUATRO EM LINHA\n");
 
     desenharParteDeCima();
 

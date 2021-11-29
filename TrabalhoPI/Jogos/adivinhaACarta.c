@@ -2,6 +2,7 @@
 void adivinhaACarta()
 {
     system("cls");
+    printf("\nADIVINHA A CARTA\n");
     // N- Naipe aleatorio || carta- carta aleatoria || Tc- Tentativa de acertar a carta || naipes- tentativa de acertar os naipes 
     // nt- numero de tentativas|| P- Pontos || np- numero de pontos
     int N = 0, carta = 0, Tc = 0, flag1 = 0, flag2 = 0, nt = 0,np = 0, P = 0;
@@ -24,8 +25,8 @@ void adivinhaACarta()
         memcpy(NC, "ouros", 10);
 
     //----------------------------------------------
-    printf("\n%s", NC);
-    printf("\n%d", carta);
+    // printf("\n%s", NC);
+    // printf("\n%d", carta);
     while (flag1 == 0 || flag2 == 0)
     {
 

@@ -9,11 +9,15 @@ void adivinhaONumero(){
     pontuacaoPlayer -> pontuacao do player naquela ronda
     */
     int numAAdivinhar = 0, num = 0, flag = 0, tentativas = 0, tentativasFalhadas = 0, pontuacaoPlayer = 0;
-
     num = generateRandomInt(0, 100);
+
+    char* player = umJogadorEscolhido();
+    getChar();
 
     while(flag == 0){
         system("cls");
+
+        printf("\nADIVINHA O NUMERO\n");
 
         printf("\nEscreva um número: ");
         scanf("%d", &numAAdivinhar);
@@ -32,8 +36,10 @@ void adivinhaONumero(){
             else pontuacaoPlayer = 10 - tentativasFalhadas;
 
             printf("\nPontos: %d\n", pontuacaoPlayer);
+
+            adicionarPontosAoJogador(player, pontuacaoPlayer, AdivinhaNumero);
+
             printf("\n\n");
-            premirTeclaContinuar();
             getChar();
             flag = -1;
         } else if(numAAdivinhar < num){
@@ -43,6 +49,7 @@ void adivinhaONumero(){
             tentativasFalhadas++;
             premirTeclaContinuar();
             getChar();
+            getChar();
         } else if(numAAdivinhar > num){
             printf("\nNúmero menor\n");
             //incrementacao para numero de tentativas falhadas
@@ -50,10 +57,12 @@ void adivinhaONumero(){
             printf("\n\n");
             premirTeclaContinuar();
             getChar();
+            getChar();
         } else{
             errorMessageGame();
             printf("\n\n");
             premirTeclaContinuar();
+            getChar();
             getChar();
         } 
     }

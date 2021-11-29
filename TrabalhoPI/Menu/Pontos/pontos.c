@@ -1,17 +1,3 @@
-struct Jogador{
-    char nome[10];
-    int pontosAdivinhaNumero;
-    int pontosAdivinhaCarta;
-    int pontosVinteEUm;
-    int pontosJogoDoGaloUmVsUm;
-    int pontosJogoDoGaloUmVsCPU;
-    int pontosJogoDaForca;
-    int pontosQuatroEmLinhaUmVsUm;
-    int pontosQuatroEmLinhaUmVsCPU;
-    int pontosTotais;
-};
-
-
 //Função para saber quantos jogadores tem o programa
 int countJogadores(){
     FILE *fJogadores = NULL;
@@ -492,6 +478,67 @@ void listarPontosQuatroEmLinhaUmVsCPU(){
     printf("\n");
 }
 
+//função para pontos dos 10 melhores jogadores
+void pontosPJogadorGlobal(){
+    int count = countJogadores() - 1, auxPontos;
+    char auxNomes[10];
+    struct Jogador Jogadores[200];
+    
+    FILE *fJogadores = NULL;
+
+    fJogadores = fopen("Ficheiros/Jogadores.txt", "rt");
+
+    if (fJogadores == NULL){
+        perror("Error");
+    }
+
+    //Ficheiro = Nome pontosAdivinhaNumero pontosAdivinhaCarta pontosVinteEUm, etc..
+
+    for(int i = 0; i < count; i++){
+        fscanf(fJogadores, "%s %d %d %d %d %d %d %d %d", 
+        Jogadores[i].nome, &Jogadores[i].pontosAdivinhaNumero,
+        &Jogadores[i].pontosAdivinhaCarta, &Jogadores[i].pontosVinteEUm,
+        &Jogadores[i].pontosJogoDoGaloUmVsUm, &Jogadores[i].pontosJogoDoGaloUmVsCPU,
+        &Jogadores[i].pontosJogoDaForca, &Jogadores[i].pontosQuatroEmLinhaUmVsUm,
+        &Jogadores[i].pontosQuatroEmLinhaUmVsCPU);
+
+        Jogadores[i].pontosTotais = Jogadores[i].pontosAdivinhaNumero +
+        Jogadores[i].pontosAdivinhaCarta + Jogadores[i].pontosVinteEUm +
+        Jogadores[i].pontosJogoDoGaloUmVsUm + Jogadores[i].pontosJogoDoGaloUmVsCPU +
+        Jogadores[i].pontosJogoDaForca + Jogadores[i].pontosQuatroEmLinhaUmVsUm +
+        Jogadores[i].pontosQuatroEmLinhaUmVsCPU;
+    }
+
+    for(int i = 0; i < count; i++){ 
+        for(int j = 0; j < count; j++){
+            if(Jogadores[i].pontosTotais > Jogadores[j].pontosTotais){ 
+                auxPontos = Jogadores[i].pontosTotais;
+                strcpy(auxNomes, Jogadores[i].nome);
+                Jogadores[i].pontosTotais = Jogadores[j].pontosTotais;
+                strcpy(Jogadores[i].nome, Jogadores[j].nome);
+                Jogadores[j].pontosTotais = auxPontos;
+                strcpy(Jogadores[j].nome, auxNomes);
+            } 
+        }
+    }
+
+    fclose(fJogadores);
+
+    system("cls");
+
+    printf("\nPONTUACAO DOS 10 MELHORES JOGADORES\n\n");
+
+    if(count > 10) count = 10;
+
+    for(int i = 0; i < count; i++){
+        printf("\nO total de pontos de %s e: %d", Jogadores[i].nome, Jogadores[i].pontosTotais);
+    }
+
+    getChar();
+
+    printf("\n");
+}
+
 //função para pontos dos 10 melhores jogadores por cada jogo
 void pontosPJogo(){
     //variaveis
@@ -575,10 +622,52 @@ void pontosPJogo(){
     } while(flag == 0);
 }
 
-//função para pontos dos 10 melhores jogadores
-void pontosPJogadorGlobal(){
-    int count = countJogadores() - 1, auxPontos;
-    char auxNomes[10];
+char *umJogadorEscolhido(){
+    int count = countJogadores() - 1, flagEscolhido = 0, escolha;
+    struct Jogador Jogadores[200];
+    char *jogadorSelecionado = " ";
+    
+    FILE *fJogadores = NULL;
+
+    fJogadores = fopen("Ficheiros/Jogadores.txt", "rt");
+
+    if (fJogadores == NULL){
+        perror("Error");
+    }
+
+    for(int i = 0; i < count; i++){
+        fscanf(fJogadores, "%s %d %d %d %d %d %d %d %d", 
+        Jogadores[i].nome, &Jogadores[i].pontosAdivinhaNumero,
+        &Jogadores[i].pontosAdivinhaCarta, &Jogadores[i].pontosVinteEUm,
+        &Jogadores[i].pontosJogoDoGaloUmVsUm, &Jogadores[i].pontosJogoDoGaloUmVsCPU,
+        &Jogadores[i].pontosJogoDaForca, &Jogadores[i].pontosQuatroEmLinhaUmVsUm,
+        &Jogadores[i].pontosQuatroEmLinhaUmVsCPU);
+    }
+
+    fclose(fJogadores);
+
+    do{
+        printf("Escolha um jogador: \n");
+
+        for(int i = 0; i < count; i++){
+            printf("\n%d - %s", i + 1, Jogadores[i].nome);
+        }
+
+        printf("\n");
+
+        scanf("%d", &escolha);
+
+        if(escolha > 0 && escolha < count){
+            jogadorSelecionado = Jogadores[escolha - 1].nome;
+            flagEscolhido = 1;
+        }
+    } while(flagEscolhido == 0);
+
+    return jogadorSelecionado;
+}
+
+void adicionarPontosAoJogador(char jogador[10], int quantidadePontos, const char *jogo){
+    int count = countJogadores() - 1;
     struct Jogador Jogadores[200];
     
     FILE *fJogadores = NULL;
@@ -589,8 +678,6 @@ void pontosPJogadorGlobal(){
         perror("Error");
     }
 
-    //Ficheiro = Nome pontosAdivinhaNumero pontosAdivinhaCarta pontosVinteEUm, etc..
-
     for(int i = 0; i < count; i++){
         fscanf(fJogadores, "%s %d %d %d %d %d %d %d %d", 
         Jogadores[i].nome, &Jogadores[i].pontosAdivinhaNumero,
@@ -599,39 +686,26 @@ void pontosPJogadorGlobal(){
         &Jogadores[i].pontosJogoDaForca, &Jogadores[i].pontosQuatroEmLinhaUmVsUm,
         &Jogadores[i].pontosQuatroEmLinhaUmVsCPU);
 
-        Jogadores[i].pontosTotais = Jogadores[i].pontosAdivinhaNumero +
-        Jogadores[i].pontosAdivinhaCarta + Jogadores[i].pontosVinteEUm +
-        Jogadores[i].pontosJogoDoGaloUmVsUm + Jogadores[i].pontosJogoDoGaloUmVsCPU +
-        Jogadores[i].pontosJogoDaForca + Jogadores[i].pontosQuatroEmLinhaUmVsUm +
-        Jogadores[i].pontosQuatroEmLinhaUmVsCPU;
-    }
-
-    for(int i = 0; i < count; i++){ 
-        for(int j = 0; j < count; j++){
-            if(Jogadores[i].pontosTotais > Jogadores[j].pontosTotais){ 
-                auxPontos = Jogadores[i].pontosTotais;
-                strcpy(auxNomes, Jogadores[i].nome);
-                Jogadores[i].pontosTotais = Jogadores[j].pontosTotais;
-                strcpy(Jogadores[i].nome, Jogadores[j].nome);
-                Jogadores[j].pontosTotais = auxPontos;
-                strcpy(Jogadores[j].nome, auxNomes);
-            } 
+        if(jogador == Jogadores[i].nome){
+            printf("\n2 - AQUI!\n");
+            if(jogo == AdivinhaNumero) Jogadores[i].pontosAdivinhaNumero += quantidadePontos;
+            else if(jogo == AdivinhaCarta) Jogadores[i].pontosAdivinhaCarta += quantidadePontos;
+            else if(jogo == VinteUm) Jogadores[i].pontosVinteEUm += quantidadePontos;
+            else if(jogo == JogoGalo1v1) Jogadores[i].pontosJogoDoGaloUmVsUm += quantidadePontos;
+            else if(jogo == JogoGalo1vCPU) Jogadores[i].pontosJogoDoGaloUmVsCPU += quantidadePontos;
+            else if(jogo == JogoForca) Jogadores[i].pontosJogoDaForca += quantidadePontos;
+            else if(jogo == QuatroLinha1v1) Jogadores[i].pontosQuatroEmLinhaUmVsUm += quantidadePontos;
+            else if(jogo == QuatroLinha1vCPU) Jogadores[i].pontosQuatroEmLinhaUmVsCPU += quantidadePontos;
         }
     }
 
-    fclose(fJogadores);
-
-    system("cls");
-
-    printf("\nPONTUACAO DOS 10 MELHORES JOGADORES\n\n");
-
-    if(count > 10) count = 10;
-
     for(int i = 0; i < count; i++){
-        printf("\nO total de pontos de %s e: %d", Jogadores[i].nome, Jogadores[i].pontosTotais);
+        fprintf(fJogadores, "%s %d %d %d %d %d %d %d %d\n", Jogadores[i].nome, Jogadores[i].pontosAdivinhaNumero,
+        Jogadores[i].pontosAdivinhaCarta, Jogadores[i].pontosVinteEUm,
+        Jogadores[i].pontosJogoDoGaloUmVsUm, Jogadores[i].pontosJogoDoGaloUmVsCPU,
+        Jogadores[i].pontosJogoDaForca, Jogadores[i].pontosQuatroEmLinhaUmVsUm,
+        Jogadores[i].pontosQuatroEmLinhaUmVsCPU);
     }
-
-    getChar();
-
-    printf("\n");
+	
+	fclose(fJogadores);
 }

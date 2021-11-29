@@ -7,6 +7,7 @@ void quatroEmLinhaVsCPU(){
     //Variaveis do CPU
     pontosCPU = 0, linhaTabelaCPU = 6, flagVezDoCPU = 0, flagLinhasCPU = 0, flagColunasCPU = 0, colunaTabelaCPU = -1;
     system("cls");
+    printf("\nQUATRO EM LINHA\n");
 
     //Desenho da tabela
     desenharParteDeCima();

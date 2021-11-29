@@ -103,10 +103,14 @@ void jogoDaForca() {
 		printf("GAME OVER!\n\n");
 		printf("A palavra era : %s\n\n", palavraescolhida);
 
+		getChar();
+
 	}
 	else {
 		printf("VOCE GANHOU O JOGO!\n\n");
 		printf("A palavra era : %s\n\n", palavraescolhida);
+
+		getChar();
 	}
 	system("pause");
 }

@@ -14,6 +14,7 @@ void vinteEUm(){
 
     while(flag == 0){
         system("cls");
+        printf("\nVINTE E UM\n");
         naipe = generateRandomInt(1, 4);
         naipeString = naipeToString(naipe);
         carta = generateRandomInt(1, 13);
@@ -22,6 +23,7 @@ void vinteEUm(){
         if(flagVezDoJogador == 1){
             printf("\nPONTUACAO DO PLAYER: %d\n", pontuacaoJogoPlayer);
             if(carta >= 11 && carta <= 13) printf("\nEscolher ficar com a carta %s de %s ? s/S n/N ", cartaString, naipeString);
+            else if(carta == 1) printf("\nEscolher ficar com a carta As de %s ? s/S n/N ", naipeString);
             else printf("\nEscolher ficar com a carta %d de %s ? s/S n/N ", carta, naipeString);
             scanf(" %c", &escolha);
 
@@ -56,7 +58,9 @@ void vinteEUm(){
             //Vez do CPU
             printf("\nPONTUACAO DO CPU: %d\n", pontuacaoJogoCPU);
             printf("\nCPU\n");
-            printf("\nEscolher ficar com a carta %d de %s ?", carta, naipeString);
+            if(carta >= 11 && carta <= 13) printf("\nEscolher ficar com a carta %s de %s ? s/S n/N ", cartaString, naipeString);
+            else if(carta == 1) printf("\nEscolher ficar com a carta As de %s ? s/S n/N ", naipeString);
+            else printf("\nEscolher ficar com a carta %d de %s ? s/S n/N ", carta, naipeString);
 
             if(carta > 0 && carta < 11) cpuBrain += 1;
             else if(carta > 10 && carta < 14) cpuBrain += 10;

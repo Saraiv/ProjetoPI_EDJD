@@ -1,4 +1,7 @@
 void jogoDaForca() {
+	char* player = umJogadorEscolhido();
+    getChar();
+
 	int vidas = 6;
 	char letras_inseridas[26];
 	char tentativa[50];
@@ -109,7 +112,7 @@ void jogoDaForca() {
 	else {
 		printf("VOCE GANHOU O JOGO!\n\n");
 		printf("A palavra era : %s\n\n", palavraescolhida);
-
+		adicionarPontosAoJogador(player, 1, AdivinhaNumero);
 		getChar();
 	}
 	system("pause");

@@ -1,5 +1,8 @@
 //JOGO OITO
 void quatroEmLinhaVsCPU(){
+    char* player = umJogadorEscolhido();
+    getChar();
+    
     char jogadorSelecionado = 'X', tabuleiro[6][7], jogadorVencedor = 'p';
     int rondas = 0, 
     //Variaveis do jogador

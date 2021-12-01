@@ -2,7 +2,8 @@
 //JOGO CINCO
 void jogoDoGaloVsCPU()
 {
-
+    char* player = umJogadorEscolhido();
+    getChar();
     int flags = 0, flag = 0, flagB = 0, temp = 0, J = 1, v1 = 0, v2 = 0, P1 = 0, P2 = 0, jogador1 = 0, jogador2 = 0, c = 0, JP1 = 0, JP2 = 0, TPC = 0, min = 1, max = 9, v;
     char tabuleiro[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 

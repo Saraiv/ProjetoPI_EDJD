@@ -1,6 +1,8 @@
 //JOGO DOIS
 void adivinhaACarta()
 {
+    char* player = umJogadorEscolhido();
+    getChar();
     system("cls");
     printf("\nADIVINHA A CARTA\n");
     // N- Naipe aleatorio || carta- carta aleatoria || Tc- Tentativa de acertar a carta || naipes- tentativa de acertar os naipes 
@@ -83,6 +85,7 @@ void adivinhaACarta()
     {
         system("cls");
         printf("\nA sua pontuacao foi: %d\nPrecisou de %d tentativa(s).\n", P, nt);
+        adicionarPontosAoJogador(player, P, AdivinhaCarta);
         printf("Se pretende sair prima (0)\n");
         scanf("%d", &flag1);
     }

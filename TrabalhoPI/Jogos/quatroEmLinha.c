@@ -1,5 +1,8 @@
 //JOGO SETE
 void quatroEmLinha(){
+    char* player = umJogadorEscolhido();
+    char* playerDois = doisJogadorEscolhido();
+    getChar();
     char jogadorSelecionado = 'X', tabuleiro[6][7], jogadorVencedor = 'p';
     int rondas = 0, colunaTabela = -1, pontosJogadorX = 0, pontosJogadorY = 0, 
     linhaTabela = 6, flagVezDeJogador = 0, flagLinhas = 0, flagColunas = 0;
@@ -141,6 +144,8 @@ void quatroEmLinha(){
     printf("\n\n");
     if(rondas != 42){
         printf("\nO jogador vencedor é: %c\tPontuacao do Jogador X: %d\tPontuacao do Jogador Y: %d\n", jogadorVencedor, pontosJogadorX, pontosJogadorY);
+        adicionarPontosAoJogador(player, pontosJogadorX, AdivinhaNumero);
+        adicionarPontosAoJogador(player, pontosJogadorY, AdivinhaNumero);
     } else printf("\nEmpate!\tPontuacao do Jogador X: %d\tPontuacao do Jogador Y: %d\n", jogadorVencedor, pontosJogadorX, pontosJogadorY);
     premirTeclaContinuar();
     getChar();

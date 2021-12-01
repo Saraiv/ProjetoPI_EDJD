@@ -622,10 +622,10 @@ void pontosPJogo(){
     } while(flag == 0);
 }
 
-char *umJogadorEscolhido(){
+char* umJogadorEscolhido(){
     int count = countJogadores() - 1, flagEscolhido = 0, escolha;
     struct Jogador Jogadores[200];
-    char *jogadorSelecionado = " ";
+    char* jogadorSelecionado = " ";
     
     FILE *fJogadores = NULL;
 
@@ -647,6 +647,7 @@ char *umJogadorEscolhido(){
     fclose(fJogadores);
 
     do{
+        system("cls");
         printf("Escolha um jogador: \n");
 
         for(int i = 0; i < count; i++){
@@ -666,9 +667,10 @@ char *umJogadorEscolhido(){
     return jogadorSelecionado;
 }
 
-void adicionarPontosAoJogador(char jogador[10], int quantidadePontos, const char *jogo){
-    int count = countJogadores() - 1;
+char* doisJogadorEscolhido(){
+    int count = countJogadores() - 1, flagEscolhido = 0, escolha;
     struct Jogador Jogadores[200];
+    char* jogadorSelecionado = " ";
     
     FILE *fJogadores = NULL;
 
@@ -685,27 +687,86 @@ void adicionarPontosAoJogador(char jogador[10], int quantidadePontos, const char
         &Jogadores[i].pontosJogoDoGaloUmVsUm, &Jogadores[i].pontosJogoDoGaloUmVsCPU,
         &Jogadores[i].pontosJogoDaForca, &Jogadores[i].pontosQuatroEmLinhaUmVsUm,
         &Jogadores[i].pontosQuatroEmLinhaUmVsCPU);
+    }
 
-        if(jogador == Jogadores[i].nome){
-            printf("\n2 - AQUI!\n");
-            if(jogo == AdivinhaNumero) Jogadores[i].pontosAdivinhaNumero += quantidadePontos;
-            else if(jogo == AdivinhaCarta) Jogadores[i].pontosAdivinhaCarta += quantidadePontos;
-            else if(jogo == VinteUm) Jogadores[i].pontosVinteEUm += quantidadePontos;
-            else if(jogo == JogoGalo1v1) Jogadores[i].pontosJogoDoGaloUmVsUm += quantidadePontos;
-            else if(jogo == JogoGalo1vCPU) Jogadores[i].pontosJogoDoGaloUmVsCPU += quantidadePontos;
-            else if(jogo == JogoForca) Jogadores[i].pontosJogoDaForca += quantidadePontos;
-            else if(jogo == QuatroLinha1v1) Jogadores[i].pontosQuatroEmLinhaUmVsUm += quantidadePontos;
-            else if(jogo == QuatroLinha1vCPU) Jogadores[i].pontosQuatroEmLinhaUmVsCPU += quantidadePontos;
+    fclose(fJogadores);
+
+    do{
+        system("cls");
+        printf("Escolha segundo jogador: \n");
+
+        for(int i = 0; i < count; i++){
+            printf("\n%d - %s", i + 1, Jogadores[i].nome);
         }
+
+        printf("\n");
+
+        scanf("%d", &escolha);
+
+        if(escolha > 0 && escolha < count){
+            jogadorSelecionado = Jogadores[escolha - 1].nome;
+            flagEscolhido = 1;
+        }
+    } while(flagEscolhido == 0);
+
+    return jogadorSelecionado;
+}
+
+void adicionarPontosAoJogador(char* jogador, int quantidadePontos, const char* jogo){
+    int count = countJogadores() - 1, posicao = -1;
+    struct Jogador Jogadores[200];
+    
+    FILE *fJogadores = NULL;
+
+    fJogadores = fopen("Ficheiros/Jogadores.txt", "rt");
+
+    if (fJogadores == NULL){
+        perror("Error");
+    }
+
+    //Preciso usar o memory allocation porque ao fazer o ciclo for perco o apontador do jogador
+    char *player;
+    player = malloc(sizeof(jogador));
+    player = jogador;
+
+    for(int i = 0; i < count; i++){
+        fscanf(fJogadores, "%s %d %d %d %d %d %d %d %d", 
+        Jogadores[i].nome, &Jogadores[i].pontosAdivinhaNumero,
+        &Jogadores[i].pontosAdivinhaCarta, &Jogadores[i].pontosVinteEUm,
+        &Jogadores[i].pontosJogoDoGaloUmVsUm, &Jogadores[i].pontosJogoDoGaloUmVsCPU,
+        &Jogadores[i].pontosJogoDaForca, &Jogadores[i].pontosQuatroEmLinhaUmVsUm,
+        &Jogadores[i].pontosQuatroEmLinhaUmVsCPU);
+        if(player == Jogadores[i].nome) posicao = i;
+    }
+
+    printf("\n%s %s %d", player, Jogadores[posicao].nome, posicao);
+
+    fclose(fJogadores);
+
+    if(jogo == AdivinhaNumero) Jogadores[posicao].pontosAdivinhaNumero += quantidadePontos;
+    else if(jogo == AdivinhaCarta) Jogadores[posicao].pontosAdivinhaCarta += quantidadePontos;
+    else if(jogo == VinteUm) Jogadores[posicao].pontosVinteEUm += quantidadePontos;
+    else if(jogo == JogoGalo1v1) Jogadores[posicao].pontosJogoDoGaloUmVsUm += quantidadePontos;
+    else if(jogo == JogoGalo1vCPU) Jogadores[posicao].pontosJogoDoGaloUmVsCPU += quantidadePontos;
+    else if(jogo == JogoForca) Jogadores[posicao].pontosJogoDaForca += quantidadePontos;
+    else if(jogo == QuatroLinha1v1) Jogadores[posicao].pontosQuatroEmLinhaUmVsUm += quantidadePontos;
+    else if(jogo == QuatroLinha1vCPU) Jogadores[posicao].pontosQuatroEmLinhaUmVsCPU += quantidadePontos;
+
+    FILE *fJogadoresWrite = NULL;
+
+    fJogadoresWrite = fopen("Ficheiros/Jogadores.txt", "w");
+
+    if (fJogadoresWrite == NULL){
+        perror("Error");
     }
 
     for(int i = 0; i < count; i++){
-        fprintf(fJogadores, "%s %d %d %d %d %d %d %d %d\n", Jogadores[i].nome, Jogadores[i].pontosAdivinhaNumero,
+        fprintf(fJogadoresWrite, "%s %d %d %d %d %d %d %d %d\n", Jogadores[i].nome, Jogadores[i].pontosAdivinhaNumero,
         Jogadores[i].pontosAdivinhaCarta, Jogadores[i].pontosVinteEUm,
         Jogadores[i].pontosJogoDoGaloUmVsUm, Jogadores[i].pontosJogoDoGaloUmVsCPU,
         Jogadores[i].pontosJogoDaForca, Jogadores[i].pontosQuatroEmLinhaUmVsUm,
         Jogadores[i].pontosQuatroEmLinhaUmVsCPU);
     }
 	
-	fclose(fJogadores);
+	fclose(fJogadoresWrite);
 }

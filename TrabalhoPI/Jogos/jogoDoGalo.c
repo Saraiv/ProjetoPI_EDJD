@@ -1,6 +1,10 @@
 //Jogo_do_Galo--------------------------------
 void jogoDoGalo()
 {
+    char* player = umJogadorEscolhido();
+    char* playerDois = doisJogadorEscolhido();
+    getChar();
+
     int flags = 0, flag = 0, flagB = 0, temp = 0, J = 1, v1 = 0, v2 = 0, P1 = 0, P2 = 0, jogador1 = 0, jogador2 = 0, c = 0, JP1 = 0, JP2 = 0, v;
     char tabuleiro[] = {'1','2','3','4','5','6','7','8','9'};
    
@@ -203,6 +207,7 @@ void jogoDoGalo()
                 else
                     P2 -= 2;
             }
+            adicionarPontosAoJogador(player, P1, AdivinhaNumero);
         }
         else if(v2 == 1)
         {
@@ -228,6 +233,7 @@ void jogoDoGalo()
                 else
                     P1 -= 2;
             }
+            adicionarPontosAoJogador(playerDois, P2, AdivinhaNumero);
         }
         else
         {

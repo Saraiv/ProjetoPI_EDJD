@@ -1,8 +1,12 @@
 //JOGO DOIS
 void adivinhaACarta()
 {
-    char* player = umJogadorEscolhido();
+    char* jogador = umJogadorEscolhido();
+    char* player;
+    player = malloc(sizeof(jogador));
+    player = jogador;
     getChar();
+    
     system("cls");
     printf("\nADIVINHA A CARTA\n");
     // N- Naipe aleatorio || carta- carta aleatoria || Tc- Tentativa de acertar a carta || naipes- tentativa de acertar os naipes 

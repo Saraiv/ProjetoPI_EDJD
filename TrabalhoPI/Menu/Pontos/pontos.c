@@ -739,8 +739,6 @@ void adicionarPontosAoJogador(char* jogador, int quantidadePontos, const char* j
         if(player == Jogadores[i].nome) posicao = i;
     }
 
-    printf("\n%s %s %d", player, Jogadores[posicao].nome, posicao);
-
     fclose(fJogadores);
 
     if(jogo == AdivinhaNumero) Jogadores[posicao].pontosAdivinhaNumero += quantidadePontos;

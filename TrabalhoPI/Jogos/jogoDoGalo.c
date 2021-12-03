@@ -1,8 +1,14 @@
 //Jogo_do_Galo--------------------------------
 void jogoDoGalo()
 {
-    char* player = umJogadorEscolhido();
-    char* playerDois = doisJogadorEscolhido();
+    char* jogador = umJogadorEscolhido();
+    char* player;
+    player = malloc(sizeof(jogador));
+    player = jogador;
+    char* jogadorDois = umJogadorEscolhido();
+    char *playerDois;
+    playerDois = malloc(sizeof(jogadorDois));
+    playerDois = jogadorDois;
     getChar();
 
     int flags = 0, flag = 0, flagB = 0, temp = 0, J = 1, v1 = 0, v2 = 0, P1 = 0, P2 = 0, jogador1 = 0, jogador2 = 0, c = 0, JP1 = 0, JP2 = 0, v;
@@ -27,9 +33,9 @@ void jogoDoGalo()
 
             //Input
             if (jogador1 == 1)
-                printf("Jogador(1):\n-Escolha uma coordenada para jogar:\n");
+                printf("%s:\n-Escolha uma coordenada para jogar:\n", player);
             if (jogador2 == 1)
-                printf("Jogador(2):\nEscolha uma coordenada para jogar:\n");
+                printf("%s:\nEscolha uma coordenada para jogar:\n", playerDois);
             scanf("%d", &temp);
            
 
@@ -188,7 +194,7 @@ void jogoDoGalo()
             system("cls");
             tabjogo(tabuleiro);
             printf("\n");
-            printf("Vitoria do jogador(1)!\n");
+            printf("Vitoria do %s!\n", player);
 
             //Sistema de pontos
             if (JP1 == 1)
@@ -207,14 +213,14 @@ void jogoDoGalo()
                 else
                     P2 -= 2;
             }
-            adicionarPontosAoJogador(player, P1, AdivinhaNumero);
+            adicionarPontosAoJogador(player, P1, JogoGalo1v1);
         }
         else if(v2 == 1)
         {
             system("cls");
             tabjogo(tabuleiro);
             printf("\n");
-            printf("Vitoria do jogador(2)!\n");
+            printf("Vitoria do %s\n", playerDois);
 
             //Sistema de pontos!
             if (JP2 == 1)
@@ -233,7 +239,7 @@ void jogoDoGalo()
                 else
                     P1 -= 2;
             }
-            adicionarPontosAoJogador(playerDois, P2, AdivinhaNumero);
+            adicionarPontosAoJogador(playerDois, P2, JogoGalo1v1);
         }
         else
         {
@@ -244,7 +250,7 @@ void jogoDoGalo()
         }
 
         //Output que mostra a scoreboard entre os dois jogadores
-        printf("Pontos do jogador(1):\n%d\n\nPontos do jogador(2):\n%d\n", P1, P2);
+        printf("Pontos de %s:\n%d\n\nPontos de %s:\n%d\n", player, P1, playerDois, P2);
         printf("Pretende continuar?\nSim(0) Nao(1)\n");
         scanf("%d", &flags);
        

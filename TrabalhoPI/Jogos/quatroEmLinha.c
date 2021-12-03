@@ -1,7 +1,13 @@
 //JOGO SETE
 void quatroEmLinha(){
-    char* player = umJogadorEscolhido();
-    char* playerDois = doisJogadorEscolhido();
+    char* jogador = umJogadorEscolhido();
+    char* player;
+    player = malloc(sizeof(jogador));
+    player = jogador;
+    char* jogadorDois = umJogadorEscolhido();
+    char *playerDois;
+    playerDois = malloc(sizeof(jogadorDois));
+    playerDois = jogadorDois;
     getChar();
     char jogadorSelecionado = 'X', tabuleiro[6][7], jogadorVencedor = 'p';
     int rondas = 0, colunaTabela = -1, pontosJogadorX = 0, pontosJogadorY = 0, 
@@ -27,7 +33,8 @@ void quatroEmLinha(){
 
         //cada jogada
         while(flagColunas == 0){
-            printf("\nJogador %c, em que coluna quer jogar? ", jogadorSelecionado);
+            if(jogadorSelecionado == 'X') printf("\n%s, em que coluna quer jogar? ", player);
+            else if(jogadorSelecionado == '0') printf("\n%s, em que coluna quer jogar? ", playerDois);
             scanf("%d", &colunaTabela);
             if(colunaTabela >= 1 && colunaTabela <= 7){
                 flagColunas = 1;
@@ -143,10 +150,12 @@ void quatroEmLinha(){
 
     printf("\n\n");
     if(rondas != 42){
-        printf("\nO jogador vencedor é: %c\tPontuacao do Jogador X: %d\tPontuacao do Jogador Y: %d\n", jogadorVencedor, pontosJogadorX, pontosJogadorY);
-        adicionarPontosAoJogador(player, pontosJogadorX, AdivinhaNumero);
-        adicionarPontosAoJogador(player, pontosJogadorY, AdivinhaNumero);
+        if(jogadorVencedor == 'X') printf("\nO jogador vencedor e: %s\tPontuacao de %s: %d\tPontuacao de %s: %d\n", player, player, pontosJogadorX, playerDois, pontosJogadorY);
+        else if(jogadorVencedor == '0') printf("\nO jogador vencedor e: %s\tPontuacao de %s: %d\tPontuacao de %s: %d\n", playerDois, player, pontosJogadorX, playerDois, pontosJogadorY);
+        
+        adicionarPontosAoJogador(player, pontosJogadorX, QuatroLinha1v1);
+        adicionarPontosAoJogador(playerDois, pontosJogadorY, QuatroLinha1v1);
     } else printf("\nEmpate!\tPontuacao do Jogador X: %d\tPontuacao do Jogador Y: %d\n", jogadorVencedor, pontosJogadorX, pontosJogadorY);
-    premirTeclaContinuar();
+
     getChar();
 }

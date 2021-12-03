@@ -9,7 +9,10 @@ void vinteEUm(){
     carta -> 1 - 10 numeros das cartas / 11 - 13 Dama Valete e Rei
     cpuBrain -> var temporaria para fazer com que o cpu pare o jogo.
     */
-    char* player = umJogadorEscolhido();
+    char* jogador = umJogadorEscolhido();
+    char *player;
+    player = malloc(sizeof(jogador));
+    player = jogador;
     getChar();
 
     int flag = 0, flagVezDoJogador = 1, pontuacaoJogoPlayer = 0, pontuacaoJogoCPU = 0, naipe = -1, carta = -1, cpuBrain = 0;
@@ -89,7 +92,7 @@ void vinteEUm(){
         system("cls");
         printf("\nRESULTADO FINAL");
         printf("\nPontos do Jogador: %d\tPontuacao do CPU: %d\nO Jogador ganhou!", pontuacaoJogoPlayer, pontuacaoJogoCPU);
-        adicionarPontosAoJogador(player, pontuacaoJogoPlayer, AdivinhaCarta);
+        adicionarPontosAoJogador(player, pontuacaoJogoPlayer, VinteUm);
         printf("\n\n");
     } else if(pontuacaoJogoPlayer < pontuacaoJogoCPU){
         system("cls");

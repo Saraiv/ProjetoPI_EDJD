@@ -1,5 +1,8 @@
 void jogoDaForca() {
-	char* player = umJogadorEscolhido();
+	char* jogador = umJogadorEscolhido();
+    char* player;
+    player = malloc(sizeof(jogador));
+    player = jogador;
     getChar();
 
 	int vidas = 6;
@@ -98,7 +101,6 @@ void jogoDaForca() {
 			erro3 = '|';
 		if (vidas == 1)
 			erro4 = 94;
-		system("pause");
 		system("cls");
 	}
 
@@ -107,12 +109,12 @@ void jogoDaForca() {
 		printf("A palavra era : %s\n\n", palavraescolhida);
 
 		getChar();
-
 	}
 	else {
 		printf("VOCE GANHOU O JOGO!\n\n");
 		printf("A palavra era : %s\n\n", palavraescolhida);
-		adicionarPontosAoJogador(player, 1, AdivinhaNumero);
+		adicionarPontosAoJogador(player, 1, JogoForca);
+
 		getChar();
 	}
 	system("pause");

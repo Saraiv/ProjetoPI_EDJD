@@ -2,7 +2,10 @@
 //JOGO CINCO
 void jogoDoGaloVsCPU()
 {
-    char* player = umJogadorEscolhido();
+    char* jogador = umJogadorEscolhido();
+    char* player;
+    player = malloc(sizeof(jogador));
+    player = jogador;
     getChar();
     int flags = 0, flag = 0, flagB = 0, temp = 0, J = 1, v1 = 0, v2 = 0, P1 = 0, P2 = 0, jogador1 = 0, jogador2 = 0, c = 0, JP1 = 0, JP2 = 0, TPC = 0, min = 1, max = 9, v;
     char tabuleiro[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
@@ -28,7 +31,7 @@ void jogoDoGaloVsCPU()
             //Input
             if (jogador1 == 1)
             {
-                printf("Jogador(1):\n-Escolha uma coordenada para jogar:\n");
+                printf("%s:\n-Escolha uma coordenada para jogar:\n", player);
                 scanf("%d", &temp);
             }
             if (jogador2 == 1) //Computador faz coisas
@@ -223,7 +226,7 @@ void jogoDoGaloVsCPU()
             system("cls");
             tabjogo(tabuleiro);
             printf("\n");
-            printf("Vitoria do jogador(1)!\n");
+            printf("Vitoria do %s!\n", player);
 
             //Sistema de pontos
             if (JP1 == 1)
@@ -242,13 +245,14 @@ void jogoDoGaloVsCPU()
                 else
                     P2 -= 2;
             }
+            adicionarPontosAoJogador(player, P1, JogoGalo1vCPU);
         }
         else if (v2 == 1)
         {
             system("cls");
             tabjogo(tabuleiro);
             printf("\n");
-            printf("Vitoria do jogador(2)!\n");
+            printf("Vitoria do CPU!\n");
 
             //Sistema de pontos!
             if (JP2 == 1)
@@ -277,7 +281,7 @@ void jogoDoGaloVsCPU()
         }
 
         //Output que mostra a scoreboard entre os dois jogadores
-        printf("Pontos do jogador(1):\n%d\n\nPontos do jogador(2):\n%d\n", P1, P2);
+        printf("Pontos de %s:\n%d\n\nPontos do CPU:\n%d\n", player, P1, P2);
         printf("Pretende continuar?\nSim(0) Nao(1)\n");
         scanf("%d", &flags);
 

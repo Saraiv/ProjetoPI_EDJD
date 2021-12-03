@@ -1,8 +1,8 @@
-Celestino 0 2 0 4 0 0 6 0
+Celestino 0 2 0 7 0 0 6 0
 Lucas 0 2 0 4 0 0 5 5
 Alguem 0 3 0 4 0 1 0 0
 OutroAlgo 0 0 2 0 4 0 0 0
-Saraiva 5 2 3 4 5 6 7 8
+Saraiva 15 4 3 4 6 7 10 9
 Teste 0 0 0 0 0 0 0 0
 Teste 0 0 0 0 0 0 0 0
 jahsd 0 0 0 0 0 0 0 0

@@ -1,6 +1,9 @@
 //JOGO OITO
 void quatroEmLinhaVsCPU(){
-    char* player = umJogadorEscolhido();
+    char* jogador = umJogadorEscolhido();
+    char *player;
+    player = malloc(sizeof(jogador));
+    player = jogador;
     getChar();
     
     char jogadorSelecionado = 'X', tabuleiro[6][7], jogadorVencedor = 'p';
@@ -32,7 +35,7 @@ void quatroEmLinhaVsCPU(){
 
         //cada jogada
         while(flagColunas == 0){
-            printf("\nJogador %c, em que coluna quer jogar? ", jogadorSelecionado);
+            printf("\n%s, em que coluna quer jogar? ", player);
             scanf("%d", &colunaTabela);
             if(colunaTabela >= 1 && colunaTabela <= 7){
                 flagColunas = 1;
@@ -220,8 +223,10 @@ void quatroEmLinhaVsCPU(){
 
     printf("\n\n");
     if(rondas != 42){
-        printf("\nO jogador vencedor é: %c\tPontuacao do Jogador X: %d\tPontuacao do CPU: %d\n", jogadorVencedor, pontosJogadorX, pontosCPU);
+        adicionarPontosAoJogador(player, pontosJogadorX, QuatroLinha1vCPU);
+        if(jogadorVencedor == 'X') printf("\nO jogador vencedor e: %s\tPontuacao de %s: %d\tPontuacao do CPU: %d\n", player, player, pontosJogadorX, pontosCPU);
+        else if(jogadorVencedor == '0') printf("\nO jogador vencedor e: CPU\tPontuacao de %s: %d\tPontuacao do CPU: %d\n", player, pontosJogadorX, pontosCPU);
     } else printf("\nEmpate!\tPontuacao do Jogador X: %d\tPontuacao do CPU: %d\n", jogadorVencedor, pontosJogadorX, pontosCPU);
-    premirTeclaContinuar();
+
     getChar();
 }

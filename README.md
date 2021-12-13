@@ -23,13 +23,3 @@ Requisitos
 
 - Questões adicionais
 	- Ficheiros;
-	- Galo cervejeiro 1v1;
-	- Galo cervejeiro 1vsCPU;
-	- Master-Mind 1vs1;
-	- Master-Mind 1vsCPU;
-	- Mine-Sweeper;
-	- Mine-Sweeper Multi-nível;
-
-
-	
-

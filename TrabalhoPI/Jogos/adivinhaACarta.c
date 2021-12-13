@@ -1,6 +1,5 @@
 //JOGO DOIS
-void adivinhaACarta()
-{
+void adivinhaACarta(){
     char* jogador = umJogadorEscolhido();
     char* player;
     player = malloc(sizeof(jogador));
